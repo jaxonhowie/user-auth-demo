@@ -16,6 +16,8 @@ import java.util.Date;
  */
 public class TokenUtil {
 
+    private TokenUtil() {
+    }
 
 
     /**

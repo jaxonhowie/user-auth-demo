@@ -13,6 +13,9 @@ import java.io.IOException;
  */
 public class EncryptUtil {
 
+    private EncryptUtil() {
+    }
+
     private static final String PRIVATE_KEY = "A&Sample&Sequence&Witch&" +
             "Could=Be=Used=As=A=Private=Key";
 
@@ -26,7 +29,7 @@ public class EncryptUtil {
         byte[] bytes = origin.getBytes();
         char salt = PRIVATE_KEY.charAt(5);
         for (int i = 0; i < bytes.length; i++) {
-            bytes[i] = (byte) (bytes[i] ^ (int) salt);
+            bytes[i] = (byte) (bytes[i] ^ salt);
         }
         return new BASE64Encoder().encode(bytes);
     }
@@ -35,7 +38,7 @@ public class EncryptUtil {
         byte[] bytes = new BASE64Decoder().decodeBuffer(encryptPwd);
         char salt = PRIVATE_KEY.charAt(5);
         for (int i = 0; i < bytes.length; i++) {
-            bytes[i] = (byte) (bytes[i] ^ (int) salt);
+            bytes[i] = (byte) (bytes[i] ^ salt);
         }
         return new String(bytes, 0, bytes.length);
     }
