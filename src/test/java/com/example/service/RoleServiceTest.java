@@ -8,6 +8,7 @@ import com.example.model.User;
 import com.example.utils.TokenUtil;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 import java.util.Set;
@@ -74,7 +75,7 @@ class RoleServiceTest {
     }
 
     @Test
-    void tokenValidation() {
+    void tokenValidation() throws IOException {
         String username = "username";
         String password = "password";
         String token = roleService.authenticate("username", "password");
@@ -87,7 +88,7 @@ class RoleServiceTest {
     }
 
     @Test
-    void invalidateToken() {
+    void invalidateToken() throws IOException {
         String username = "username";
         String password = "password";
         userService.createUser(username, password);
@@ -102,7 +103,7 @@ class RoleServiceTest {
     }
 
     @Test
-    void checkRole() {
+    void checkRole() throws IOException {
         String username = "username";
         String password = "password";
         String roleName = "firstRole";
@@ -119,7 +120,7 @@ class RoleServiceTest {
      * 测试获取全部角色
      */
     @Test
-    void getAllRoles() {
+    void getAllRoles() throws IOException {
         String fakeToken = "An invalid token";
         userService.createUser("username", "password");
         String realToken = roleService.authenticate("username", "password");

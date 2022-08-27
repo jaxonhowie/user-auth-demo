@@ -4,6 +4,8 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.example.commons.Result;
 import com.example.service.RoleService;
 
+import java.io.IOException;
+
 /**
  * desc: 用户角色相关接口
  * author: Hongyi Zheng
@@ -55,7 +57,12 @@ public class RoleController extends BaseController {
      * @return 授权成功返回令牌，用户不存在返回error
      */
     public Result authenticate(String username, String password) {
-        String token = roleService.authenticate(username, password);
+        String token;
+        try {
+            token = roleService.authenticate(username, password);
+        } catch (IOException e) {
+            return error();
+        }
         return "".equals(token) ? error() : success(token);
     }
 

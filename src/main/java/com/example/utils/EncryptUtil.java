@@ -1,5 +1,10 @@
 package com.example.utils;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+import java.io.IOException;
+
 /**
  * desc:
  * author: Hongyi Zheng
@@ -18,6 +23,15 @@ public class EncryptUtil {
      */
     public static String encrypt(String origin) {
         byte[] bytes = origin.getBytes();
+        char salt = PRIVATE_KEY.charAt(5);
+        for (int i = 0; i < bytes.length; i++) {
+            bytes[i] = (byte) (bytes[i] ^ (int) salt);
+        }
+        return new BASE64Encoder().encode(bytes);
+    }
+
+    public static String decrypt(String encryptPwd) throws IOException {
+        byte[] bytes = new BASE64Decoder().decodeBuffer(encryptPwd);
         char salt = PRIVATE_KEY.charAt(5);
         for (int i = 0; i < bytes.length; i++) {
             bytes[i] = (byte) (bytes[i] ^ (int) salt);

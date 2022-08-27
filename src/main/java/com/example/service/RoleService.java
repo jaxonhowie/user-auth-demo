@@ -7,6 +7,7 @@ import com.example.model.Role;
 import com.example.model.User;
 import com.example.utils.TokenUtil;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
@@ -70,7 +71,7 @@ public class RoleService {
         return roleDao.getAllRoles(user.getUsername());
     }
 
-    public String authenticate(String username, String password) {
+    public String authenticate(String username, String password) throws IOException {
         return userDao.genToken(username, password);
     }
 

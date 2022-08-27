@@ -5,6 +5,7 @@ import com.example.model.User;
 import com.example.utils.EncryptUtil;
 import com.example.utils.TokenUtil;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -37,11 +38,11 @@ public class UserDao {
         return userMap;
     }
 
-    public boolean checkUserInfo(User user) {
+    public boolean checkUserInfo(User user) throws IOException {
         String username = user.getUsername();
         if (ifUserExists(username)) {
             User memUser = userMap.get(username);
-            memUser.setPassword(EncryptUtil.encrypt(memUser.getPassword()));
+            memUser.setPassword(EncryptUtil.decrypt(memUser.getPassword()));
             return Objects.equals(user, memUser);
         }
         return false;
@@ -55,7 +56,7 @@ public class UserDao {
         userTokenMap.remove(username);
     }
 
-    public String genToken(String username, String password) {
+    public String genToken(String username, String password) throws IOException {
         User user = new User(username, password);
         if (!checkUserInfo(user)) {
             return "";
