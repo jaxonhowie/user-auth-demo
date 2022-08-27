@@ -44,6 +44,19 @@ public class TokenUtil {
     public static boolean isExpiry(String token) {
         DecodedJWT decode = JWT.decode(token);
         Date expiresAt = decode.getExpiresAt();
-        return new Date().after(expiresAt);
+        Date currentTime = new Date();
+        System.out.printf("Token will expire at : %s, current time :%s%n", expiresAt, currentTime);
+        return currentTime.after(expiresAt);
+    }
+
+    public static String genTokenWithExpiry(User user, Date expiresAt) {
+        //有效时间2H
+        final String token = JWT.create()
+                .withClaim("aud", user.getUsername())
+                .withClaim("pwd", user.getPassword())
+                .withExpiresAt(expiresAt)
+                .sign(Algorithm.HMAC256(SECRETE));
+        System.out.printf("user = { %s, %s }, token = %s%n", user.getUsername(), user.getPassword(), token);
+        return token;
     }
 }

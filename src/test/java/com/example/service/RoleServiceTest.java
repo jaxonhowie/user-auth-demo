@@ -4,8 +4,11 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.example.dao.RoleDao;
 import com.example.dao.UserDao;
 import com.example.model.Role;
+import com.example.model.User;
+import com.example.utils.TokenUtil;
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -112,6 +115,9 @@ class RoleServiceTest {
         assertTrue(roleService.checkRole(token, roleName));
     }
 
+    /**
+     * 测试获取全部角色
+     */
     @Test
     void getAllRoles() {
         String fakeToken = "An invalid token";
@@ -126,10 +132,26 @@ class RoleServiceTest {
         System.out.printf("all roles of username are : %s%n", allRoles);
     }
 
+    /**
+     * 测试为用户添加角色
+     *
+     * @param username
+     * @param roleNames
+     */
     private void addRolesToUser(String username,String... roleNames) {
         for (String roleName : roleNames) {
             roleService.createRole(roleName);
             roleService.addRoleToUser(username, roleName);
         }
+    }
+
+    /**
+     * 测试过期时间
+     */
+    @Test
+    void validateToken() {
+        String token = TokenUtil.genTokenWithExpiry(new User("username", "password"), new Date());
+        boolean expiry = TokenUtil.isExpiry(token);
+        assertTrue(expiry);
     }
 }
