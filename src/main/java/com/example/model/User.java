@@ -4,8 +4,9 @@ import java.util.Objects;
 
 /**
  * desc: 用户
- * author: Hongyi Zheng
- * date: 2022/8/26
+ *
+ * @author : Hongyi Zheng
+ * @date : 2022/8/26
  */
 public class User {
     /**

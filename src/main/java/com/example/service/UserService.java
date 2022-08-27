@@ -8,8 +8,9 @@ import java.util.Map;
 
 /**
  * desc:
- * author: Hongyi Zheng
- * date: 2022/8/25
+ *
+ * @author : Hongyi Zheng
+ * @date : 2022/8/25
  */
 public class UserService {
 
@@ -21,7 +22,7 @@ public class UserService {
 
     public boolean createUser(String username, String password) {
         //用户名重复则创建失败
-        if (userDao.ifUserExists(username)){
+        if (userDao.ifUserExists(username)) {
             return false;
         }
         //加密password

@@ -4,12 +4,13 @@ import com.example.commons.Result;
 
 /**
  * desc:
- * author: Hongyi Zheng
- * date: 2022/8/26
+ *
+ * @author : Hongyi Zheng
+ * @date : 2022/8/26
  */
 public abstract class BaseController {
 
-    protected Result success(Object data){
+    protected Result success(Object data) {
         return Result.success(data);
     }
 

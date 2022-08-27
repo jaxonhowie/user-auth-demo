@@ -13,8 +13,9 @@ import java.util.Set;
 
 /**
  * desc: 角色相关业务处理
- * author: Hongyi Zheng
- * date: 2022/8/25
+ *
+ * @author : Hongyi Zheng
+ * @date : 2022/8/25
  */
 public class RoleService {
 
@@ -57,7 +58,7 @@ public class RoleService {
         }
     }
 
-    public boolean checkRole(String token, String roleName) throws JWTVerificationException{
+    public boolean checkRole(String token, String roleName) throws JWTVerificationException {
         User user = TokenUtil.getTokenUser(token);
         if (userDao.validateToken(token, user)) {
             return roleDao.ifUserContainsRole(user.getUsername(), roleName);
@@ -65,7 +66,7 @@ public class RoleService {
         return false;
     }
 
-    public String getAllRoles(String token) throws JWTVerificationException{
+    public String getAllRoles(String token) throws JWTVerificationException {
         User user = TokenUtil.getTokenUser(token);
         userDao.validateToken(token, user);
         return roleDao.getAllRoles(user.getUsername());

@@ -17,14 +17,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * desc:
- * author: Hongyi Zheng
- * date: 2022/8/26
+ *
+ * @author : Hongyi Zheng
+ * @date : 2022/8/26
  */
 class RoleServiceTest {
 
 
     private final UserDao userDao = new UserDao();
-    private final RoleService roleService = new RoleService(new RoleDao(),userDao);
+    private final RoleService roleService = new RoleService(new RoleDao(), userDao);
     private final UserService userService = new UserService(userDao);
 
     @Test
@@ -97,9 +98,9 @@ class RoleServiceTest {
         for (Map.Entry<String, String> entry : userTokenMap.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
-        assertEquals(1,userTokenMap.size());
+        assertEquals(1, userTokenMap.size());
         roleService.invalidateToken(valid);
-        assertEquals(0,userTokenMap.size());
+        assertEquals(0, userTokenMap.size());
     }
 
     @Test
@@ -124,7 +125,7 @@ class RoleServiceTest {
         String fakeToken = "An invalid token";
         userService.createUser("username", "password");
         String realToken = roleService.authenticate("username", "password");
-        addRolesToUser("username","role1","role2","role3","role4","role5");
+        addRolesToUser("username", "role1", "role2", "role3", "role4", "role5");
         assertThrows(JWTVerificationException.class, () -> {
             roleService.getAllRoles(fakeToken);
             throw new JWTVerificationException("Token 无效");
@@ -139,7 +140,7 @@ class RoleServiceTest {
      * @param username
      * @param roleNames
      */
-    private void addRolesToUser(String username,String... roleNames) {
+    private void addRolesToUser(String username, String... roleNames) {
         for (String roleName : roleNames) {
             roleService.createRole(roleName);
             roleService.addRoleToUser(username, roleName);

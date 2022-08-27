@@ -7,8 +7,9 @@ import java.io.IOException;
 
 /**
  * desc:
- * author: Hongyi Zheng
- * date: 2022/8/25
+ *
+ * @author : Hongyi Zheng
+ * @date : 2022/8/25
  */
 public class EncryptUtil {
 

@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class UserServiceTest {
 
-    private String username = "Hongyi Zheng";
-    private String password = "zhy123456";
+    private final String username = "Hongyi Zheng";
+    private final String password = "zhy123456";
 
     private final UserService userService = new UserService(new UserDao());
 

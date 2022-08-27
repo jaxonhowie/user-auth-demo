@@ -2,8 +2,9 @@ package com.example;
 
 /**
  * desc: App start entry
- * author: Hongyi Zheng
- * date: 2022/8/26
+ *
+ * @author : Hongyi Zheng
+ * @date : 2022/8/26
  */
 public class UserAuthDemoApplication {
 

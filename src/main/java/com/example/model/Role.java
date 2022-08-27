@@ -2,8 +2,9 @@ package com.example.model;
 
 /**
  * desc: 角色
- * author: Hongyi Zheng
- * date: 2022/8/25
+ *
+ * @author : Hongyi Zheng
+ * @date : 2022/8/25
  */
 public class Role {
     private String roleName;
